@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+	<PackageReference Include="Mapster" Version="7.4.0" />
+	<PackageReference Include="FastEndpoints" Version="5.22.0" />
+	<PackageReference Include="FastEndpoints.ClientGen" Version="5.22.0" />
+	<PackageReference Include="FastEndpoints.Security" Version="5.22.0" />
+	<PackageReference Include="FastEndpoints.Swagger" Version="5.22.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebChatApi.Application\WebChatApi.Application.csproj" />
+    <ProjectReference Include="..\WebChatApi.Domain\WebChatApi.Domain.csproj" />
+    <ProjectReference Include="..\WebChatApi.Infrastructure\WebChatApi.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
