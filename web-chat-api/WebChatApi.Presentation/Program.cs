@@ -3,7 +3,6 @@ using FastEndpoints.Swagger;
 using System.Text.Json.Serialization;
 using WebChatApi.Infrastructure.Database;
 using WebChatApi.Infrastructure.Extensions.Database;
-using WebChatApi.Infrastructure.Hubs;
 
 namespace WebChatApi.Presentation;
 

@@ -1,15 +1,15 @@
 ﻿using FastEndpoints;
 using WebChatApi.Application.Services;
-using WebChatApi.Contracts.Dtos.User;
+using WebChatApi.Contracts.Dtos;
+using WebChatApi.Contracts.Responses;
 using WebChatApi.Infrastructure.EndpointSettings.Groups;
-using WebChatApi.Infrastructure.Services;
 
 namespace WebChatApi.Presentation.Endpoints.User;
 
-public class CreateUsersEndpoint : Endpoint<CreateUserDto, EmptyResponse>
+public class DeleteUserEndpoint : Endpoint<IdRequest, ApiResponse>
 {
 	private readonly IUserService _userService;
-	public CreateUsersEndpoint(
+	public DeleteUserEndpoint(
 		IUserService userService)
 	{
 		_userService = userService;
@@ -18,21 +18,21 @@ public class CreateUsersEndpoint : Endpoint<CreateUserDto, EmptyResponse>
 	public override void Configure()
 	{
 		AllowAnonymous();
-		Post("create");
+		Post("delete");
 		Group<UserEndpointsGroup>();
 		Description(d =>
 		{
-			d.WithDisplayName("Create");
+			d.WithDisplayName("Delete");
 		});
 		Summary(s =>
 		{
-			s.Summary = "Create user";
-			s.Description = "Create user";
+			s.Summary = "Delete user";
+			s.Description = "Delete user";
 		});
 	}
 
-	public override async Task HandleAsync(CreateUserDto req, CancellationToken ct)
+	public override async Task HandleAsync(IdRequest req, CancellationToken ct)
 	{
-		await _userService.CreateUserAsync(req);
+		Response = await _userService.DeleteUserAsync(req.Id);
 	}
 }

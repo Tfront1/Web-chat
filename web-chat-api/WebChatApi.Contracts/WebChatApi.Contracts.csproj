@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebChatApi.Domain\WebChatApi.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
