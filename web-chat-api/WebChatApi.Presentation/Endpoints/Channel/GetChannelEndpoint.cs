@@ -4,35 +4,35 @@ using WebChatApi.Contracts.Requests;
 using WebChatApi.Contracts.Responses;
 using WebChatApi.Infrastructure.EndpointSettings.Groups;
 
-namespace WebChatApi.Presentation.Endpoints.User;
+namespace WebChatApi.Presentation.Endpoints.Channel;
 
-public class GetUserEndpoint : Endpoint<IdRequest, ApiResponse>
+public class GetChannelEndpoint : Endpoint<IdRequest, ApiResponse>
 {
-	private readonly IUserService _userService;
-	public GetUserEndpoint(
-		IUserService userService)
+	private readonly IChannelService _channelService;
+	public GetChannelEndpoint(
+		IChannelService channelService)
 	{
-		_userService = userService;
+		_channelService = channelService;
 	}
 
 	public override void Configure()
 	{
 		AllowAnonymous();
 		Post("get");
-		Group<UserEndpointsGroup>();
+		Group<ChannelEndpointsGroup>();
 		Description(d =>
 		{
 			d.WithDisplayName("Get");
 		});
 		Summary(s =>
 		{
-			s.Summary = "Get user";
-			s.Description = "Get user";
+			s.Summary = "Get channel";
+			s.Description = "Get channel";
 		});
 	}
 
 	public override async Task HandleAsync(IdRequest req, CancellationToken ct)
 	{
-		Response = await _userService.GetByIdAsync(req.Id);
+		Response = await _channelService.GetByIdAsync(req.Id);
 	}
 }

@@ -4,35 +4,35 @@ using WebChatApi.Contracts.Requests;
 using WebChatApi.Contracts.Responses;
 using WebChatApi.Infrastructure.EndpointSettings.Groups;
 
-namespace WebChatApi.Presentation.Endpoints.User;
+namespace WebChatApi.Presentation.Endpoints.Channel;
 
-public class DeleteUserEndpoint : Endpoint<IdRequest, ApiResponse>
+public class DeleteChannelEndpoint : Endpoint<IdRequest, ApiResponse>
 {
-	private readonly IUserService _userService;
-	public DeleteUserEndpoint(
-		IUserService userService)
+	private readonly IChannelService _channelService;
+	public DeleteChannelEndpoint(
+		IChannelService channelService)
 	{
-		_userService = userService;
+		_channelService = channelService;
 	}
 
 	public override void Configure()
 	{
 		AllowAnonymous();
 		Post("delete");
-		Group<UserEndpointsGroup>();
+		Group<ChannelEndpointsGroup>();
 		Description(d =>
 		{
 			d.WithDisplayName("Delete");
 		});
 		Summary(s =>
 		{
-			s.Summary = "Delete user";
-			s.Description = "Delete user";
+			s.Summary = "Delete channel";
+			s.Description = "Delete channel";
 		});
 	}
 
 	public override async Task HandleAsync(IdRequest req, CancellationToken ct)
 	{
-		Response = await _userService.DeleteAsync(req.Id);
+		Response = await _channelService.DeleteAsync(req.Id);
 	}
 }

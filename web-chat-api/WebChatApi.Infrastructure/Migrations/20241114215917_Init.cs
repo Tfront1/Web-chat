@@ -1,12 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace WebChatApi.Infrastructure.Migrations
 {
-	/// <inheritdoc />
-	public partial class Init : Migration
+    /// <inheritdoc />
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,7 +21,6 @@ namespace WebChatApi.Infrastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     username = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     avatar_url = table.Column<string>(type: "text", nullable: true),
-                    subscription_amount = table.Column<decimal>(type: "numeric", nullable: false),
                     first_name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     last_name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
                     is_active = table.Column<bool>(type: "boolean", nullable: false),
@@ -46,7 +47,6 @@ namespace WebChatApi.Infrastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
-                    is_private = table.Column<bool>(type: "boolean", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     creator_id = table.Column<int>(type: "integer", nullable: false),
                     avatar_url = table.Column<string>(type: "text", nullable: true)
@@ -72,8 +72,7 @@ namespace WebChatApi.Infrastructure.Migrations
                     description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: true),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     creator_id = table.Column<int>(type: "integer", nullable: false),
-                    avatar_url = table.Column<string>(type: "text", nullable: true),
-                    is_private = table.Column<bool>(type: "boolean", nullable: false)
+                    avatar_url = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -3,35 +3,35 @@ using WebChatApi.Application.Services.EntityServices;
 using WebChatApi.Contracts.Responses;
 using WebChatApi.Infrastructure.EndpointSettings.Groups;
 
-namespace WebChatApi.Presentation.Endpoints.User;
+namespace WebChatApi.Presentation.Endpoints.Channel;
 
-public class GetAllUsersEndpoint : Endpoint<EmptyRequest, ApiResponse>
+public class GetAllChannelsEndpoint : Endpoint<EmptyRequest, ApiResponse>
 {
-	private readonly IUserService _userService;
-	public GetAllUsersEndpoint(
-		IUserService userService)
+	private readonly IChannelService _channelService;
+	public GetAllChannelsEndpoint(
+		IChannelService channelService)
 	{
-		_userService = userService;
+		_channelService = channelService;
 	}
 
 	public override void Configure()
 	{
 		AllowAnonymous();
 		Post("get-all");
-		Group<UserEndpointsGroup>();
+		Group<ChannelEndpointsGroup>();
 		Description(d =>
 		{
 			d.WithDisplayName("Get all");
 		});
 		Summary(s =>
 		{
-			s.Summary = "Get all users";
-			s.Description = "Get all user";
+			s.Summary = "Get all channels";
+			s.Description = "Get all channels";
 		});
 	}
 
 	public override async Task HandleAsync(EmptyRequest req, CancellationToken ct)
 	{
-		Response = await _userService.GetAllAsync();
+		Response = await _channelService.GetAllAsync();
 	}
 }

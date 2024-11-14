@@ -8,7 +8,6 @@ public class GroupChatDbo
 	public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 	public int CreatorId { get; set; }
 	public string? AvatarUrl { get; set; }
-	public bool IsPrivate { get; set; } = false;
 
 	public virtual UserDbo Creator { get; set; } = null!;
 	public virtual ICollection<GroupChatUserDbo> Members { get; set; } = new List<GroupChatUserDbo>();

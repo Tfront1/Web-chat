@@ -1,5 +1,5 @@
 ﻿using FastEndpoints;
-using WebChatApi.Application.Services;
+using WebChatApi.Application.Services.EntityServices;
 using WebChatApi.Contracts.Dtos.User;
 using WebChatApi.Contracts.Responses;
 using WebChatApi.Infrastructure.EndpointSettings.Groups;

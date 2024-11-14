@@ -13,7 +13,7 @@ using WebChatApi.Infrastructure.Database;
 namespace WebChatApi.Infrastructure.Migrations
 {
     [DbContext(typeof(WebChatApiInternalContext))]
-    [Migration("20241111212402_Init")]
+    [Migration("20241114215917_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -95,10 +95,6 @@ namespace WebChatApi.Infrastructure.Migrations
                         .HasColumnType("text[]")
                         .HasColumnName("stack");
 
-                    b.Property<decimal>("SubscriptionAmount")
-                        .HasColumnType("numeric")
-                        .HasColumnName("subscription_amount");
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -136,10 +132,6 @@ namespace WebChatApi.Infrastructure.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)")
                         .HasColumnName("description");
-
-                    b.Property<bool>("IsPrivate")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_private");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -254,10 +246,6 @@ namespace WebChatApi.Infrastructure.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)")
                         .HasColumnName("description");
-
-                    b.Property<bool>("IsPrivate")
-                        .HasColumnType("boolean")
-                        .HasColumnName("is_private");
 
                     b.Property<string>("Name")
                         .IsRequired()
