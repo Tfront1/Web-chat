@@ -61,4 +61,80 @@ public class GroupChatService : BaseService<GroupChatDbo, GroupChatDto>, IGroupC
 
         return ApiSuccessResponse.Empty;
     }
+
+	public async Task<ApiResponse> CreateGroupChatUserAsync(GroupChatUserDto groupChatUserDto)
+	{
+		var groupChatUser = await _context.GroupChatUsers
+			.FindAsync(groupChatUserDto.GroupChatId, groupChatUserDto.UserId);
+
+		if (groupChatUser != null)
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.GroupChatUserAlreadyExist);
+		}
+
+		var groupChat = await _context.GroupChats.FindAsync(groupChatUserDto.GroupChatId);
+
+		if (groupChat == null)
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.GroupChatNotFound);
+		}
+
+		var user = await _context.Users.FindAsync(groupChatUserDto.UserId);
+
+		if (user == null)
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.UserNotFound);
+		}
+
+		try
+		{
+			var newGroupChatUser = groupChatUserDto.Adapt<GroupChatUserDbo>();
+			await _context.GroupChatUsers.AddAsync(newGroupChatUser);
+			await _context.SaveChangesAsync();
+		}
+		catch
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.GroupChatUserNotCreated);
+		}
+
+		return ApiSuccessResponse.Empty;
+	}
+
+	public async Task<ApiResponse> DeleteGroupChatUserAsync(GroupChatUserDto groupChatUserDto)
+	{
+		var groupChatUser = await _context.GroupChatUsers
+			.FindAsync(groupChatUserDto.GroupChatId, groupChatUserDto.UserId);
+
+		if (groupChatUser == null)
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.GroupChatUserNotFound);
+		}
+
+		try
+		{
+			_context.GroupChatUsers.Remove(groupChatUser);
+			await _context.SaveChangesAsync();
+		}
+		catch
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.GroupChatUserNotDeleted);
+		}
+
+		return ApiSuccessResponse.Empty;
+	}
+
+	public async Task<ApiResponse> GetAllGroupChatUsersByGroupChatIdAsync(int groupChatId)
+	{
+		var groupChat = await _context.GroupChats.FindAsync(groupChatId);
+
+		if (groupChat == null)
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.GroupChatNotFound);
+		}
+
+		var groupChatUsers = _context.GroupChatUsers.Where(x => x.GroupChatId == groupChatId).ToList();
+
+		var dtos = groupChatUsers.Adapt<List<GroupChatUserDto>>();
+		return new ApiSuccessResponse<List<GroupChatUserDto>>(dtos);
+	}
 }

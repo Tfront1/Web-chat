@@ -15,9 +15,19 @@ public static class ProblemDetailsResponsesModel
 		GroupChatNotCreated,
 		GroupChatNotFound,
 		GroupChatNotUpdated,
+		GroupChatUserNotCreated,
+		GroupChatUserNotDeleted,
+		GroupChatUserNotFound,
+		GroupChatUserAlreadyExist,
 		ChannelNotCreated,
 		ChannelNotFound,
 		ChannelNotUpdated,
+		ChannelUserAlreadyExist,
+		ChannelUserNotCreated,
+		ChannelUserNotFound,
+		ChannelUserNotDeleted,
+		ChannelUserRoleAlreadySame,
+		ChannelUserRoleNotUpdated,
 	];
 
 	public const string EntityNotFound = "Entity not found.";
@@ -33,9 +43,18 @@ public static class ProblemDetailsResponsesModel
 	public const string GroupChatNotFound = "Group chat not found.";
 	public const string GroupChatNotUpdated = "Group chat not updated.";
 	public const string GroupChatNotDeleted = "Group chat not deleted.";
+	public const string GroupChatUserNotCreated = "Group chat user not created.";
+	public const string GroupChatUserNotDeleted = "Group chat user not deleted.";
+	public const string GroupChatUserNotFound = "Group chat user not found.";
+	public const string GroupChatUserAlreadyExist = "Group chat user already exist.";
 	public const string ChannelNotCreated = "Channel not created.";
 	public const string ChannelNotFound = "Channel not found.";
 	public const string ChannelNotUpdated = "Channel not updated.";
-	
+	public const string ChannelUserAlreadyExist = "Channel user already exist.";
+	public const string ChannelUserNotCreated = "Channel user not created.";
+	public const string ChannelUserNotFound = "Channel user not found.";
+	public const string ChannelUserNotDeleted = "Channel user not deleted.";
+	public const string ChannelUserRoleAlreadySame = "Channel user role already same.";
+	public const string ChannelUserRoleNotUpdated = "Channel user role not updated.";
 }
 

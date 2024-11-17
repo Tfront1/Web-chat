@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using WebChatApi.Application.Services.EntityServices;
 using WebChatApi.Contracts.Dtos.Channel;
@@ -63,6 +64,110 @@ public class ChannelService : BaseService<ChannelDbo, ChannelDto>, IChannelServi
 		catch
 		{
 			return new ApiFailureResponse(ProblemDetailsResponsesModel.ChannelNotUpdated);
+		}
+
+		return ApiSuccessResponse.Empty;
+	}
+
+	public async Task<ApiResponse> CreateChannelUserAsync(ChannelUserDto channelUserDto)
+	{
+		var channelUser = await _context.ChannelUsers
+			.FindAsync(channelUserDto.ChannelId, channelUserDto.UserId);
+
+		if (channelUser != null)
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.ChannelUserAlreadyExist);
+		}
+
+		var channel = await _context.Channels.FindAsync(channelUserDto.ChannelId);
+
+		if (channel == null)
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.ChannelNotFound);
+		}
+
+		var user = await _context.Users.FindAsync(channelUserDto.UserId);
+
+		if (user == null)
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.UserNotFound);
+		}
+
+		try
+		{
+			var newChannelUser = channelUserDto.Adapt<ChannelUserDbo>();
+			await _context.ChannelUsers.AddAsync(newChannelUser);
+			await _context.SaveChangesAsync();
+		}
+		catch
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.ChannelUserNotCreated);
+		}
+
+		return ApiSuccessResponse.Empty;
+	}
+
+	public async Task<ApiResponse> DeleteChannelUserAsync(ChannelUserDto channelUserDto)
+	{
+		var channelUser = await _context.ChannelUsers
+			.FindAsync(channelUserDto.ChannelId, channelUserDto.UserId);
+
+		if (channelUser == null)
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.ChannelUserNotFound);
+		}
+
+		try
+		{
+			_context.ChannelUsers.Remove(channelUser);
+			await _context.SaveChangesAsync();
+		}
+		catch
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.ChannelUserNotDeleted);
+		}
+
+		return ApiSuccessResponse.Empty;
+	}
+
+	public async Task<ApiResponse> GetAllChannelUsersByChannelIdAsync(int channelId)
+	{
+		var channel = await _context.Channels.FindAsync(channelId);
+
+		if (channel == null)
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.ChannelNotFound);
+		}
+
+		var channelUsers = _context.ChannelUsers.Where(x => x.ChannelId == channelId).ToList();
+
+		var dtos = channelUsers.Adapt<List<ChannelUserDto>>();
+		return new ApiSuccessResponse<List<ChannelUserDto>>(dtos);
+	}
+
+	public async Task<ApiResponse> UpdateChannelUserRole(UpdateChannelUserDto updateChannelUserDto)
+	{
+		var channelUser = await _context.ChannelUsers
+			.FindAsync(updateChannelUserDto.ChannelId, updateChannelUserDto.UserId);
+
+		if (channelUser == null)
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.ChannelUserNotFound);
+		}
+
+		if (channelUser.IsAdmin == updateChannelUserDto.IsAdmin) 
+		{	
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.ChannelUserRoleAlreadySame);
+		}
+
+		try
+		{
+			channelUser.IsAdmin = updateChannelUserDto.IsAdmin;
+			await _context.SaveChangesAsync();
+		}
+		catch
+		{
+			return new ApiFailureResponse(ProblemDetailsResponsesModel.ChannelUserRoleNotUpdated);
 		}
 
 		return ApiSuccessResponse.Empty;
