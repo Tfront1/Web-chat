@@ -3,16 +3,16 @@ using Microsoft.AspNetCore.Http;
 
 namespace WebChatApi.Infrastructure.EndpointSettings.Groups;
 
-public class ChannelUserEndpointsGroup : Group
+public class GroupChatMessageEndpointsGroup : Group
 {
-	public ChannelUserEndpointsGroup()
+	public GroupChatMessageEndpointsGroup()
 	{
 		Configure(
-			"channel/user",
+			"group-chat-message",
 			ep =>
 			{
 				ep.Description(
-					x => x.WithTags("ChannelUser"));
+					x => x.WithTags("GroupChatMessage"));
 			});
 	}
 }

@@ -1,7 +1,6 @@
 ﻿using FastEndpoints;
 using WebChatApi.Application.Services.EntityServices;
 using WebChatApi.Contracts.Dtos.Channel;
-using WebChatApi.Contracts.Dtos.GroupChat;
 using WebChatApi.Contracts.Responses;
 using WebChatApi.Infrastructure.EndpointSettings.Groups;
 

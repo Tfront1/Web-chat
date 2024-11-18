@@ -17,6 +17,9 @@ public static class ProblemDetailsResponsesModel
 		GroupChatNotUpdated,
 		GroupChatUserNotCreated,
 		GroupChatUserNotDeleted,
+		GroupChatMessageNotCreated,
+		GroupChatMessageNotUpdated,
+		GroupChatMessageNotFound,
 		GroupChatUserNotFound,
 		GroupChatUserAlreadyExist,
 		ChannelNotCreated,
@@ -28,6 +31,15 @@ public static class ProblemDetailsResponsesModel
 		ChannelUserNotDeleted,
 		ChannelUserRoleAlreadySame,
 		ChannelUserRoleNotUpdated,
+		ChannelMessageNotCreated,
+		ChannelMessageNotUpdated,
+		ChannelMessageNotFound,
+		AuthorNotFound,
+		RecipientNotFound,
+		PersonalMessageNotCreated,
+		PersonalMessageNotUpdated,
+		PersonalMessageNotFound,
+		MessageContentAlreadySame,
 	];
 
 	public const string EntityNotFound = "Entity not found.";
@@ -47,6 +59,9 @@ public static class ProblemDetailsResponsesModel
 	public const string GroupChatUserNotDeleted = "Group chat user not deleted.";
 	public const string GroupChatUserNotFound = "Group chat user not found.";
 	public const string GroupChatUserAlreadyExist = "Group chat user already exist.";
+	public const string GroupChatMessageNotCreated = "Group chat message not created.";
+	public const string GroupChatMessageNotUpdated = "Group chat message not updated.";
+	public const string GroupChatMessageNotFound = "Group chat message not found.";
 	public const string ChannelNotCreated = "Channel not created.";
 	public const string ChannelNotFound = "Channel not found.";
 	public const string ChannelNotUpdated = "Channel not updated.";
@@ -56,5 +71,13 @@ public static class ProblemDetailsResponsesModel
 	public const string ChannelUserNotDeleted = "Channel user not deleted.";
 	public const string ChannelUserRoleAlreadySame = "Channel user role already same.";
 	public const string ChannelUserRoleNotUpdated = "Channel user role not updated.";
+	public const string ChannelMessageNotCreated = "Channel message not created.";
+	public const string ChannelMessageNotUpdated = "Channel message not updated.";
+	public const string ChannelMessageNotFound = "Channel message not found.";
+	public const string AuthorNotFound = "Author not found.";
+	public const string RecipientNotFound = "Recipient not found.";
+	public const string PersonalMessageNotCreated = "Personal message not created.";
+	public const string PersonalMessageNotFound = "Personal message not found.";
+	public const string PersonalMessageNotUpdated = "Personal message not updated.";
+	public const string MessageContentAlreadySame = "Message content already same.";
 }
-

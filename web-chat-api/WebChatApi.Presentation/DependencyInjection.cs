@@ -8,6 +8,9 @@ using WebChatApi.Domain.Dbos;
 using WebChatApi.Application.Services.EntityServices;
 using WebChatApi.Infrastructure.Services.EntityServices;
 using WebChatApi.Contracts.Dtos.Channel;
+using WebChatApi.Contracts.Dtos.PersonalMessage;
+using WebChatApi.Contracts.Dtos.GroupChatMessage;
+using WebChatApi.Contracts.Dtos.ChannelMessage;
 
 namespace WebChatApi.Presentation;
 
@@ -50,6 +53,9 @@ public static class DependencyInjection
 		services.AddScoped<IUserService, UserService>();
 		services.AddScoped<IGroupChatService, GroupChatService>();
 		services.AddScoped<IChannelService, ChannelService>();
+		services.AddScoped<IPersonalMessageService, PersonalMessageService>();
+		services.AddScoped<IGroupChatMessageService, GroupChatMessageService>();
+		services.AddScoped<IChannelMessageService, ChannelMessageService>();
 	}
 
 	public static void ConfigureMapsterProfiles(this IServiceCollection services)
@@ -68,5 +74,23 @@ public static class DependencyInjection
 		TypeAdapterConfig<CreateChannelDto, ChannelDbo>
 			.NewConfig()
 			.Map(dest => dest.CreatedAt, src => DateTime.UtcNow);
+
+		TypeAdapterConfig<CreatePersonalMessageDto, PersonalMessageDbo>
+			.NewConfig()
+			.Map(dest => dest.CreatedAt, src => DateTime.UtcNow)
+			.Map(dest => dest.IsEdited, src => false)
+			.Map(dest => dest.EditedAt, src => (DateTime?)null);
+
+		TypeAdapterConfig<CreateGroupChatMessageDto, GroupChatMessageDbo>
+			.NewConfig()
+			.Map(dest => dest.CreatedAt, src => DateTime.UtcNow)
+			.Map(dest => dest.IsEdited, src => false)
+			.Map(dest => dest.EditedAt, src => (DateTime?)null);
+
+		TypeAdapterConfig<CreateChannelMessageDto, ChannelMessageDbo>
+			.NewConfig()
+			.Map(dest => dest.CreatedAt, src => DateTime.UtcNow)
+			.Map(dest => dest.IsEdited, src => false)
+			.Map(dest => dest.EditedAt, src => (DateTime?)null);
 	}
 }

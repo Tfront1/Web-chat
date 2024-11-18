@@ -7,7 +7,6 @@ public class PersonalMessageDbo
 	public int RecipientId { get; set; }
 	public string Content { get; set; }
     public DateTime CreatedAt { get; set; }
-    public string? AttachmentUrl { get; set; }
     public bool IsEdited { get; set; }
     public DateTime? EditedAt { get; set; }
 
