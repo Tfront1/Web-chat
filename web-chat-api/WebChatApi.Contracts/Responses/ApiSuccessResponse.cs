@@ -17,17 +17,6 @@ public record ApiSuccessResponse : ApiResponse
 
 	public static ApiSuccessResponse With<TS>(TS payload)
 	{
-		return new ApiSuccessResponse<TS>(payload);
+		return new ApiSuccessResponse { Payload = payload };
 	}
-}
-
-public record ApiSuccessResponse<T> : ApiSuccessResponse
-{
-	public ApiSuccessResponse(T payload)
-	{
-		Success = true;
-		Payload = payload;
-	}
-
-	public new T Payload { get; set; }
 }

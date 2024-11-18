@@ -13,7 +13,7 @@ using WebChatApi.Infrastructure.Database;
 namespace WebChatApi.Infrastructure.Migrations
 {
     [DbContext(typeof(WebChatApiInternalContext))]
-    [Migration("20241114215917_Init")]
+    [Migration("20241118154429_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -157,10 +157,6 @@ namespace WebChatApi.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AttachmentUrl")
-                        .HasColumnType("text")
-                        .HasColumnName("attachment_url");
-
                     b.Property<int>("AuthorId")
                         .HasColumnType("integer")
                         .HasColumnName("author_id");
@@ -271,10 +267,6 @@ namespace WebChatApi.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AttachmentUrl")
-                        .HasColumnType("text")
-                        .HasColumnName("attachment_url");
-
                     b.Property<int>("AuthorId")
                         .HasColumnType("integer")
                         .HasColumnName("author_id");
@@ -339,10 +331,6 @@ namespace WebChatApi.Infrastructure.Migrations
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AttachmentUrl")
-                        .HasColumnType("text")
-                        .HasColumnName("attachment_url");
 
                     b.Property<int>("AuthorId")
                         .HasColumnType("integer")

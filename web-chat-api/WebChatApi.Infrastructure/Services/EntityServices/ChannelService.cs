@@ -135,7 +135,7 @@ public class ChannelService : BaseService<ChannelDbo, ChannelDto>, IChannelServi
 		var channelUsers = _context.ChannelUsers.Where(x => x.ChannelId == channelId).ToList();
 
 		var dtos = channelUsers.Adapt<List<ChannelUserDto>>();
-		return new ApiSuccessResponse<List<ChannelUserDto>>(dtos);
+		return ApiSuccessResponse.With(dtos);
 	}
 
 	public async Task<ApiResponse> UpdateChannelUserRole(UpdateChannelUserDto updateChannelUserDto)

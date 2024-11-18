@@ -90,12 +90,11 @@ namespace WebChatApi.Infrastructure.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     author_id = table.Column<int>(type: "integer", nullable: false),
+                    recipient_id = table.Column<int>(type: "integer", nullable: false),
                     content = table.Column<string>(type: "text", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    attachment_url = table.Column<string>(type: "text", nullable: true),
                     is_edited = table.Column<bool>(type: "boolean", nullable: false),
-                    edited_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    recipient_id = table.Column<int>(type: "integer", nullable: false)
+                    edited_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -121,12 +120,11 @@ namespace WebChatApi.Infrastructure.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     author_id = table.Column<int>(type: "integer", nullable: false),
+                    channel_id = table.Column<int>(type: "integer", nullable: false),
                     content = table.Column<string>(type: "text", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    attachment_url = table.Column<string>(type: "text", nullable: true),
                     is_edited = table.Column<bool>(type: "boolean", nullable: false),
-                    edited_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    channel_id = table.Column<int>(type: "integer", nullable: false)
+                    edited_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -177,12 +175,11 @@ namespace WebChatApi.Infrastructure.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     author_id = table.Column<int>(type: "integer", nullable: false),
+                    group_chat_id = table.Column<int>(type: "integer", nullable: false),
                     content = table.Column<string>(type: "text", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    attachment_url = table.Column<string>(type: "text", nullable: true),
                     is_edited = table.Column<bool>(type: "boolean", nullable: false),
-                    edited_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    group_chat_id = table.Column<int>(type: "integer", nullable: false)
+                    edited_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {

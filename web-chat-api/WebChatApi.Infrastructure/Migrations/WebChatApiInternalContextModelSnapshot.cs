@@ -154,10 +154,6 @@ namespace WebChatApi.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AttachmentUrl")
-                        .HasColumnType("text")
-                        .HasColumnName("attachment_url");
-
                     b.Property<int>("AuthorId")
                         .HasColumnType("integer")
                         .HasColumnName("author_id");
@@ -268,10 +264,6 @@ namespace WebChatApi.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AttachmentUrl")
-                        .HasColumnType("text")
-                        .HasColumnName("attachment_url");
-
                     b.Property<int>("AuthorId")
                         .HasColumnType("integer")
                         .HasColumnName("author_id");
@@ -336,10 +328,6 @@ namespace WebChatApi.Infrastructure.Migrations
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("AttachmentUrl")
-                        .HasColumnType("text")
-                        .HasColumnName("attachment_url");
 
                     b.Property<int>("AuthorId")
                         .HasColumnType("integer")

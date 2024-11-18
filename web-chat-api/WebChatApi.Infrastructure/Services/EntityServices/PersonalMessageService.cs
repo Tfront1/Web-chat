@@ -103,6 +103,6 @@ public class PersonalMessageService : BaseService<PersonalMessageDbo, PersonalMe
 		}
 
 		var dtos = personalMessages.Adapt<List<PersonalMessageDto>>();
-		return new ApiSuccessResponse<List<PersonalMessageDto>>(dtos);
+		return ApiSuccessResponse.With(dtos);
 	}
 }

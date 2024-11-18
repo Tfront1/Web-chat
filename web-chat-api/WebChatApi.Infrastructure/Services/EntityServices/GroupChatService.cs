@@ -135,6 +135,6 @@ public class GroupChatService : BaseService<GroupChatDbo, GroupChatDto>, IGroupC
 		var groupChatUsers = _context.GroupChatUsers.Where(x => x.GroupChatId == groupChatId).ToList();
 
 		var dtos = groupChatUsers.Adapt<List<GroupChatUserDto>>();
-		return new ApiSuccessResponse<List<GroupChatUserDto>>(dtos);
+		return ApiSuccessResponse.With(dtos);
 	}
 }

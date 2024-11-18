@@ -95,6 +95,6 @@ public class GroupChatMessageService : BaseService<GroupChatMessageDbo, GroupCha
 		}
 
 		var dtos = groupChatMessages.Adapt<List<GroupChatMessageDto>>();
-		return new ApiSuccessResponse<List<GroupChatMessageDto>>(dtos);
+		return ApiSuccessResponse.With(dtos);
 	}
 }

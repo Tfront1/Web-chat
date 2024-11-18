@@ -26,14 +26,14 @@ public abstract class BaseService<TEntity, TDto> : IBaseService<TDto> where TEnt
 		}
 
 		var dto = entity.Adapt<TDto>();
-		return new ApiSuccessResponse<TDto>(dto);
+		return ApiSuccessResponse.With(dto);
 	}
 
 	public async Task<ApiResponse> GetAllAsync()
 	{
 		var entities = await _context.Set<TEntity>().ToListAsync();
 		var dtos = entities.Adapt<List<TDto>>();
-		return new ApiSuccessResponse<List<TDto>>(dtos);
+		return ApiSuccessResponse.With(dtos);
 	}
 
 	public async Task<ApiResponse> DeleteAsync(int id)

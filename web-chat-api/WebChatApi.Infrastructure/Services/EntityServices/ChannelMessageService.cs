@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using WebChatApi.Application.Services.EntityServices;
 using WebChatApi.Contracts.Dtos.ChannelMessage;
-using WebChatApi.Contracts.Dtos.GroupChatMessage;
 using WebChatApi.Contracts.Models;
 using WebChatApi.Contracts.Responses;
 using WebChatApi.Domain.Dbos;
@@ -27,7 +26,7 @@ public class ChannelMessageService : BaseService<ChannelMessageDbo, ChannelMessa
 			return new ApiFailureResponse(ProblemDetailsResponsesModel.AuthorNotFound);
 		}
 
-		var channel = await _context.GroupChats.FindAsync(createChannelMessageDto.ChannelId);
+		var channel = await _context.Channels.FindAsync(createChannelMessageDto.ChannelId);
 
 		if (channel == null)
 		{
@@ -96,6 +95,6 @@ public class ChannelMessageService : BaseService<ChannelMessageDbo, ChannelMessa
 		}
 
 		var dtos = channelMessages.Adapt<List<ChannelMessageDto>>();
-		return new ApiSuccessResponse<List<ChannelMessageDto>>(dtos);
+		return ApiSuccessResponse.With(dtos);
 	}
 }
